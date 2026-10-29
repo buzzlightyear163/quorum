@@ -1,0 +1,872 @@
+<title>QUORUM</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2222%22%20fill%3D%22%23061015%22/%3E%3Cpath%20d%3D%22M77.45%2070.00A27.45%2027.45%200%200%200%2075.24%2059.22L71.81%2060.87A23.65%2023.65%200%200%201%2073.65%2070.00ZM74.17%2056.99A27.45%2027.45%200%200%200%2068.06%2049.33L65.69%2052.31A23.65%2023.65%200%200%201%2070.74%2058.64ZM66.13%2047.79A27.45%2027.45%200%200%200%2057.31%2043.54L56.46%2047.25A23.65%2023.65%200%200%201%2063.76%2050.77ZM54.89%2042.99A27.45%2027.45%200%200%200%2045.11%2042.99L45.95%2046.70A23.65%2023.65%200%200%201%2054.05%2046.70ZM42.69%2043.54A27.45%2027.45%200%200%200%2033.87%2047.79L36.24%2050.77A23.65%2023.65%200%200%201%2043.54%2047.25ZM31.94%2049.33A27.45%2027.45%200%200%200%2025.83%2056.99L29.26%2058.64A23.65%2023.65%200%200%201%2034.31%2052.31ZM24.76%2059.22A27.45%2027.45%200%200%200%2022.55%2070.00L26.35%2070.00A23.65%2023.65%200%200%201%2028.19%2060.87ZM83.72%2070.00A33.72%2033.72%200%200%200%2080.90%2056.49L77.47%2058.14A29.92%2029.92%200%200%201%2079.92%2070.00ZM79.83%2054.26A33.72%2033.72%200%200%200%2071.98%2044.42L69.61%2047.40A29.92%2029.92%200%200%201%2076.40%2055.91ZM70.04%2042.88A33.72%2033.72%200%200%200%2058.71%2037.42L57.86%2041.13A29.92%2029.92%200%200%201%2067.67%2045.85ZM56.29%2036.87A33.72%2033.72%200%200%200%2043.71%2036.87L44.55%2040.58A29.92%2029.92%200%200%201%2055.45%2040.58ZM41.29%2037.42A33.72%2033.72%200%200%200%2029.96%2042.88L32.33%2045.85A29.92%2029.92%200%200%201%2042.14%2041.13ZM28.02%2044.42A33.72%2033.72%200%200%200%2020.17%2054.26L23.60%2055.91A29.92%2029.92%200%200%201%2030.39%2047.40ZM19.10%2056.49A33.72%2033.72%200%200%200%2016.28%2070.00L20.08%2070.00A29.92%2029.92%200%200%201%2022.53%2058.14ZM90.00%2070.00A40.00%2040.00%200%200%200%2086.56%2053.77L83.13%2055.42A36.20%2036.20%200%200%201%2086.20%2070.00ZM85.48%2051.54A40.00%2040.00%200%200%200%2075.90%2039.51L73.52%2042.49A36.20%2036.20%200%200%201%2082.06%2053.19ZM73.96%2037.97A40.00%2040.00%200%200%200%2060.10%2031.30L59.26%2035.00A36.20%2036.20%200%200%201%2071.59%2040.94ZM57.69%2030.75A40.00%2040.00%200%200%200%2042.31%2030.75L43.16%2034.45A36.20%2036.20%200%200%201%2056.84%2034.45ZM39.90%2031.30A40.00%2040.00%200%200%200%2026.04%2037.97L28.41%2040.94A36.20%2036.20%200%200%201%2040.74%2035.00ZM24.10%2039.51A40.00%2040.00%200%200%200%2014.52%2051.54L17.94%2053.19A36.20%2036.20%200%200%201%2026.48%2042.49ZM13.44%2053.77A40.00%2040.00%200%200%200%2010.00%2070.00L13.80%2070.00A36.20%2036.20%200%200%201%2016.87%2055.42Z%22%20fill%3D%22%238FC6DC%22/%3E%3Ccircle%20cx%3D%2250.00%22%20cy%3D%2259.61%22%20r%3D%2210.39%22%20fill%3D%22%23E8F0F2%22/%3E%3C/svg%3E">
+<meta name="description" content="Holders vote. One coin ships. Every day at 12:00 New York time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400..700&family=Martian+Mono:wght@400..700&display=swap">
+<style>
+/* Layout: the chamber is the hero. Thesis on the left, a live hemicycle with the ship countdown on the right
+   (half the chamber = quorum). Below: the Order Paper with a paper ballot, tabling, the session clock,
+   house rules with the fee split, and the Hansard record. */
+:root{
+  /* BELL ground (dark teal) with blue only: ice blue for the lead and accents, steel blue for everything else */
+  --paper:#061015;
+  --paper-2:#0B1A20;
+  --panel-2:#0E2028;
+  --ink:#E8F0F2;
+  --muted:#8EA2A9;
+  --line:#142429;
+  --line-2:#1F353E;
+  --bench:#8FC6DC;
+  --on-bench:#061015;
+  --steel:#4A7C93;
+  --live:#EF6C64;
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"Martian Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+:focus-visible{outline:2px solid var(--bench);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:760px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+
+.eyebrow,.k,.m-no,.chip,.pill,.btn,.btn-aye,label,.clock-label,.clock-sub,.slip-head,.stop-time small,.tick{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+
+/* Header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:16px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:38px;height:23px;flex:none}
+.brand span{font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:18px;letter-spacing:.02em}
+.top-right{display:flex;align-items:center;gap:10px;min-width:0}
+.pill{display:none;align-items:center;gap:8px;color:var(--muted);white-space:nowrap}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--live);animation:pulse 1.8s ease-in-out infinite}
+@media (min-width:640px){.pill{display:inline-flex}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--ink);background:transparent;color:var(--ink);text-decoration:none;cursor:pointer;white-space:nowrap;transition:background .15s,color .15s}
+.btn-solid{background:var(--ink);color:var(--paper)}
+.btn-solid:hover{background:var(--bench);border-color:var(--bench);color:var(--on-bench)}
+.btn-line:hover{background:var(--ink);color:var(--paper)}
+#walletBtn{max-width:52vw;overflow:hidden;text-overflow:ellipsis}
+
+/* Hero */
+.hero{display:grid;gap:40px;padding-block:52px 64px}
+@media (min-width:980px){.hero{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);align-items:center;gap:56px;padding-block:80px 88px}}
+.hero-copy{display:grid;gap:22px;min-width:0}
+.eyebrow{color:var(--muted)}
+h1{font-family:var(--f-display);font-stretch:118%;font-weight:800;font-size:clamp(2.55rem,8.6vw,5.3rem);line-height:.93;letter-spacing:-.025em;text-wrap:balance}
+h1 span{color:var(--bench)}
+.lede{font-size:clamp(1.02rem,1.6vw,1.16rem);color:var(--muted);max-width:52ch}
+.ctas{display:flex;flex-wrap:wrap;gap:10px}
+.fine{font-size:14px;color:var(--muted);max-width:52ch}
+.fine b{color:var(--ink);font-weight:600}
+
+.chamber{margin:0;display:grid;gap:18px;min-width:0}
+.chamber-stage{position:relative;width:100%;aspect-ratio:100/58;max-width:100%}
+.chamber-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.clock{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);display:grid;justify-items:center;gap:4px;text-align:center;pointer-events:none}
+.clock-label{color:var(--muted)}
+.clock-digits{font-family:var(--f-mono);font-weight:500;font-size:clamp(1.4rem,5.6vw,2.6rem);letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.clock-sub{color:var(--muted);font-size:10px}
+.chamber-cap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border-top:1px solid var(--line);padding-top:14px}
+.cap-row{display:grid;gap:4px;min-width:0}
+.cap-row .k{color:var(--muted)}
+.cap-row span:last-child{font-size:14px;font-weight:600;overflow-wrap:anywhere}
+.cap-row .ok{color:var(--bench)}
+
+/* Sections */
+.band{border-top:1px solid var(--line)}
+.band > .wrap{padding-block:64px}
+@media (min-width:760px){.band > .wrap{padding-block:88px}}
+.sec-head{display:grid;gap:12px;margin-bottom:36px;max-width:68ch}
+h2{font-family:var(--f-display);font-stretch:112%;font-weight:750;font-size:clamp(1.8rem,4.4vw,2.8rem);line-height:1.02;letter-spacing:-.02em;text-wrap:balance}
+.sec-sub{color:var(--muted)}
+.status-line{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:14px}
+.chip{display:inline-flex;align-items:center;padding:4px 9px;border:1px dashed var(--muted);border-radius:999px;color:var(--muted);font-size:10px}
+
+/* Order Paper */
+.floor-grid{display:grid;gap:32px}
+@media (min-width:1000px){.floor-grid{grid-template-columns:minmax(0,1fr) 330px;align-items:start;gap:48px}}
+.motions{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--line)}
+.motion{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px 16px;padding-block:20px;border-top:1px solid var(--line);transition:opacity .2s}
+.motions.dim .motion:not(.hl){opacity:.45}
+@media (min-width:760px){.motion{grid-template-columns:52px minmax(0,1fr) minmax(250px,300px);align-items:center;gap:20px}}
+.tile{width:48px;height:48px;border-radius:12px;background:var(--paper-2);display:grid;place-items:center;overflow:hidden;font-family:var(--f-display);font-stretch:125%;font-weight:800;font-size:14px;color:var(--muted)}
+@media (min-width:760px){.tile{width:52px;height:52px}}
+.tile img{width:100%;height:100%;object-fit:cover}
+.is-lead .tile{background:var(--bench);color:var(--on-bench)}
+.info{display:grid;gap:4px;min-width:0}
+.m-no{color:var(--muted);font-size:10px}
+.is-lead .m-no{color:var(--bench)}
+.info h3{font-family:var(--f-display);font-stretch:110%;font-weight:700;font-size:20px;line-height:1.15;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.tick{color:var(--muted);font-size:12px;letter-spacing:.04em}
+.pitch{font-size:15px}
+.by{font-size:13px;color:var(--muted);font-family:var(--f-mono);font-size:11px}
+.act{grid-column:1/-1;display:flex;align-items:center;gap:14px;min-width:0}
+@media (min-width:760px){.act{grid-column:auto}}
+.tally{flex:1;display:grid;gap:7px;min-width:0}
+.t-top{display:flex;justify-content:space-between;gap:8px;font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums}
+.t-top span{color:var(--muted)}
+.bar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--steel);opacity:1;border-radius:2px;transition:width .5s ease}
+.is-lead .bar i{background:var(--bench);opacity:1}
+.btn-aye{flex:none;min-width:108px;min-height:42px;padding:0 14px;border-radius:999px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:background .15s,color .15s}
+.btn-aye:hover{background:var(--ink);color:var(--paper)}
+.btn-aye[aria-pressed="true"]{background:var(--bench);border-color:var(--bench);color:var(--on-bench);cursor:default}
+.btn-aye:disabled{opacity:.5;cursor:wait}
+
+/* Ballot paper */
+.slip{background:var(--paper-2);border-radius:4px;padding:22px 20px 20px;display:grid;gap:16px;position:relative}
+.slip::before{content:"";position:absolute;inset:8px;border:1px solid var(--line-2);border-radius:2px;pointer-events:none}
+@media (min-width:1000px){.slip{position:sticky;top:24px}}
+.slip-head{display:flex;justify-content:space-between;gap:8px;font-weight:600}
+.slip-inst{font-family:var(--f-display);font-stretch:112%;font-weight:700;font-size:19px;line-height:1.2}
+.slip-list{list-style:none;margin:0;padding:0;display:grid}
+.slip-list li{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:12px;align-items:center;padding-block:9px;border-top:1px dashed var(--line);font-size:14px}
+.box{width:22px;height:22px;border:1.5px solid var(--muted);display:grid;place-items:center}
+.box svg{width:18px;height:18px;stroke:var(--bench);stroke-width:2.6;stroke-linecap:round;fill:none}
+.s-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.s-tick{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.slip-sig{display:grid;gap:8px;border-top:1px solid var(--line);padding-top:14px}
+.slip-sig div{display:flex;justify-content:space-between;gap:12px;font-size:13px}
+.slip-sig .k{color:var(--muted)}
+.sig{font-family:var(--f-mono);font-size:11px;overflow-wrap:anywhere;text-align:right}
+.slip-note{font-size:13px;color:var(--muted)}
+
+/* Table a motion */
+.table-grid{display:grid;gap:36px}
+@media (min-width:980px){.table-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:start}}
+.table-grid .sec-head{margin-bottom:0}
+.req{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:10px}
+.req li{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;font-size:14px;padding-top:10px;border-top:1px solid var(--line)}
+.req .k{color:var(--muted);padding-top:2px}
+form{display:grid;gap:18px;min-width:0}
+.field{display:grid;gap:8px;min-width:0}
+.field-row{display:grid;gap:18px}
+@media (min-width:560px){.field-row{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}}
+label{color:var(--muted)}
+input[type=text]{width:100%;min-height:48px;padding:0 14px;border-radius:10px;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);font:inherit;font-size:16px}
+input[type=text]:focus{outline:none;border-color:var(--bench);box-shadow:0 0 0 3px color-mix(in srgb,var(--bench) 22%,transparent)}
+.count{font-family:var(--f-mono);font-size:10px;color:var(--muted);justify-self:end}
+.upload{display:flex;align-items:center;gap:14px}
+.upload input{position:absolute;width:1px;height:1px;opacity:0}
+.upload .tile{flex:none}
+.form-foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.form-msg{font-size:14px;color:var(--muted);min-height:1.5em}
+.form-msg.err{color:var(--live)}
+.form-msg.good{color:var(--bench)}
+
+/* Session clock */
+.stops{list-style:none;margin:0;padding:0;display:grid;gap:0}
+@media (min-width:860px){.stops{grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}}
+.stop{display:grid;gap:10px;padding-block:22px;border-top:1px solid var(--line);min-width:0}
+@media (min-width:860px){.stop{padding-block:22px 0}}
+.stop:last-child{border-top-color:var(--bench)}
+.stop-time{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.stop-time b{font-family:var(--f-mono);font-weight:500;font-size:30px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stop:last-child .stop-time b{color:var(--bench)}
+.stop-time small{color:var(--muted);font-size:10px}
+.stop h3{font-family:var(--f-display);font-stretch:110%;font-weight:700;font-size:19px}
+.stop p{font-size:15px;color:var(--muted)}
+
+/* Rules */
+.rules-grid{display:grid;gap:40px}
+@media (min-width:980px){.rules-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:64px;align-items:start}}
+.rules{margin:0;display:grid}
+.rules > div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding-block:16px;border-top:1px solid var(--line)}
+.rules dt{color:var(--muted);padding-top:3px}
+.rules dd{margin:0;font-size:16px}
+.fees{background:var(--panel-2);color:var(--ink);border:1px solid var(--line-2);border-radius:6px;padding:28px 24px;display:grid;gap:20px}
+.fees .k{color:var(--muted)}
+.fees h3{font-family:var(--f-display);font-stretch:112%;font-weight:750;font-size:24px;line-height:1.1}
+.fees p{font-size:15px;color:var(--muted)}
+.split{display:flex;height:44px;border-radius:4px;overflow:hidden;gap:3px}
+.split div{display:flex;align-items:center;padding:0 12px;font-family:var(--f-mono);font-size:12px;font-weight:600;min-width:0;white-space:nowrap}
+.split .s1{background:var(--bench);color:var(--on-bench)}
+.split .s2{background:var(--steel);color:var(--paper)}
+.split-legend{display:grid;gap:8px;font-size:14px}
+.split-legend div{display:flex;gap:10px;align-items:baseline}
+.split-legend i{width:10px;height:10px;border-radius:2px;flex:none;transform:translateY(1px)}
+
+/* Hansard */
+.table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;min-width:620px;border-collapse:collapse;font-size:15px}
+th{text-align:left;font-family:var(--f-mono);font-weight:500;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:0 12px 12px 0;border-bottom:1px solid var(--line-2)}
+td{padding:16px 12px 16px 0;border-bottom:1px solid var(--line);vertical-align:baseline}
+td.num{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums}
+th.num{text-align:left}
+.h-coin b{font-weight:600}
+.h-coin span{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-left:8px}
+tr.fail td{color:var(--muted)}
+tr.fail .h-coin b{font-weight:500;font-style:italic}
+
+/* Footer */
+.foot{border-top:1px solid var(--line)}
+.foot .wrap{padding-block:40px 48px;display:grid;gap:24px}
+@media (min-width:760px){.foot .wrap{grid-template-columns:minmax(0,1fr) auto;align-items:end}}
+.foot-brand{display:grid;gap:8px}
+.foot-brand p{color:var(--muted);font-size:14px;max-width:56ch}
+.foot-links{display:flex;flex-wrap:wrap;gap:10px}
+.ca{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:12px;overflow-wrap:anywhere}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;pointer-events:none;background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:999px;font-size:14px;max-width:calc(100vw - 32px);text-align:center;transition:opacity .2s,transform .2s;z-index:20}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+[hidden]{display:none!important}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="wrap top">
+  <a class="brand" href="#top" aria-label="QUORUM, back to top">
+    <svg viewBox="0 0 40 24" aria-hidden="true"><path d="M32.84 22.80A12.84 12.84 0 0 0 31.83 17.79L30.27 18.55A11.11 11.11 0 0 1 31.11 22.80ZM31.29 16.67A12.84 12.84 0 0 0 28.49 13.16L27.41 14.51A11.11 11.11 0 0 1 29.73 17.42ZM27.51 12.38A12.84 12.84 0 0 0 23.46 10.43L23.08 12.12A11.11 11.11 0 0 1 26.43 13.74ZM22.25 10.15A12.84 12.84 0 0 0 17.75 10.15L18.14 11.84A11.11 11.11 0 0 1 21.86 11.84ZM16.54 10.43A12.84 12.84 0 0 0 12.49 12.38L13.57 13.74A11.11 11.11 0 0 1 16.92 12.12ZM11.51 13.16A12.84 12.84 0 0 0 8.71 16.67L10.27 17.42A11.11 11.11 0 0 1 12.59 14.51ZM8.17 17.79A12.84 12.84 0 0 0 7.16 22.80L8.89 22.80A11.11 11.11 0 0 1 9.73 18.55ZM35.82 22.80A15.82 15.82 0 0 0 34.51 16.50L32.95 17.25A14.09 14.09 0 0 1 34.09 22.80ZM33.97 15.38A15.82 15.82 0 0 0 30.34 10.83L29.26 12.18A14.09 14.09 0 0 1 32.41 16.13ZM29.37 10.05A15.82 15.82 0 0 0 24.13 7.52L23.74 9.21A14.09 14.09 0 0 1 28.29 11.41ZM22.91 7.25A15.82 15.82 0 0 0 17.09 7.25L17.48 8.94A14.09 14.09 0 0 1 22.52 8.94ZM15.87 7.52A15.82 15.82 0 0 0 10.63 10.05L11.71 11.41A14.09 14.09 0 0 1 16.26 9.21ZM9.66 10.83A15.82 15.82 0 0 0 6.03 15.38L7.59 16.13A14.09 14.09 0 0 1 10.74 12.18ZM5.49 16.50A15.82 15.82 0 0 0 4.18 22.80L5.91 22.80A14.09 14.09 0 0 1 7.05 17.25ZM38.80 22.80A18.80 18.80 0 0 0 37.20 15.21L35.64 15.96A17.07 17.07 0 0 1 37.07 22.80ZM36.66 14.09A18.80 18.80 0 0 0 32.20 8.50L31.12 9.85A17.07 17.07 0 0 1 35.10 14.84ZM31.23 7.72A18.80 18.80 0 0 0 24.79 4.62L24.40 6.31A17.07 17.07 0 0 1 30.15 9.08ZM23.57 4.34A18.80 18.80 0 0 0 16.43 4.34L16.81 6.03A17.07 17.07 0 0 1 23.19 6.03ZM15.21 4.62A18.80 18.80 0 0 0 8.77 7.72L9.85 9.08A17.07 17.07 0 0 1 15.60 6.31ZM7.80 8.50A18.80 18.80 0 0 0 3.34 14.09L4.90 14.84A17.07 17.07 0 0 1 8.88 9.85ZM2.80 15.21A18.80 18.80 0 0 0 1.20 22.80L2.93 22.80A17.07 17.07 0 0 1 4.36 15.96Z" fill="var(--bench)"/><circle cx="20.00" cy="17.92" r="4.88" fill="var(--ink)"/></svg>
+    <span>QUORUM</span>
+  </a>
+  <div class="top-right">
+    <span class="pill"><i></i><span id="pillText">Floor open</span></span>
+    <button class="btn btn-line" id="walletBtn" type="button">Connect wallet</button>
+  </div>
+</header>
+
+<main>
+  <section class="wrap hero" id="top">
+    <div class="hero-copy">
+      <p class="eyebrow" id="heroEyebrow">Session 014 · Solana · pump.fun</p>
+      <h1>Holders vote.<br><span>One coin ships.</span></h1>
+      <p class="lede">Thousands of coins launch on pump.fun every day, and most die before anyone looks. QUORUM launches one. Holders table the ideas, vote with their bags, and the winner ships at 12:00 New York time, for everyone at once.</p>
+      <div class="ctas">
+        <a class="btn btn-solid" href="#floor">Vote on today's motions</a>
+        <a class="btn btn-line" href="#table">Table a motion</a>
+      </div>
+      <p class="fine"><b>No quorum, no coin.</b> <span id="fineQuorum">If less than 5% of supply votes, nothing ships that day.</span></p>
+    </div>
+
+    <figure class="chamber" aria-label="The chamber: each seat is a share of today's votes. Past the middle means quorum.">
+      <div class="chamber-stage">
+        <canvas id="chamber"></canvas>
+        <div class="clock">
+          <span class="clock-label">Ships in</span>
+          <span class="clock-digits" id="clock">--:--:--</span>
+          <span class="clock-sub" id="clockSub">12:00 ET</span>
+        </div>
+      </div>
+      <figcaption class="chamber-cap">
+        <div class="cap-row"><span class="k">Turnout</span><span id="turnout">–</span></div>
+        <div class="cap-row"><span class="k">Quorum</span><span id="quorumState">–</span></div>
+        <div class="cap-row"><span class="k">Leading</span><span id="leading">–</span></div>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="band" id="floor">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow" id="floorEyebrow">Order Paper · Session 014</p>
+        <h2>Motions before the floor</h2>
+        <p class="sec-sub">One ballot per wallet. It counts the $QUORUM you hold at the 11:59 ET snapshot, and you can move it any time before the floor closes.</p>
+        <p class="status-line"><span id="closeLine">–</span><span class="chip" data-demo>Preview data</span></p>
+      </div>
+      <div class="floor-grid">
+        <ol class="motions" id="motions"></ol>
+        <aside class="slip" id="slip" aria-live="polite"></aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="table">
+    <div class="wrap table-grid">
+      <div class="sec-head">
+        <p class="eyebrow">Table a motion</p>
+        <h2>Put your coin on the Order Paper</h2>
+        <p class="sec-sub">A name, a ticker, an image and one line. If the floor picks it, it ships at noon and you earn a cut of its creator fees for good.</p>
+        <ul class="req">
+          <li><span class="k">Hold</span><span id="reqHold">100K $QUORUM in the wallet that signs</span></li>
+          <li><span class="k">Deadline</span><span>Motions close at 08:00 ET</span></li>
+          <li><span class="k">Limit</span><span>One motion per wallet per session</span></li>
+          <li><span class="k">Cost</span><span>Free. You sign a message, no funds move</span></li>
+        </ul>
+      </div>
+      <form id="motionForm" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="fName">Coin name</label>
+            <input type="text" id="fName" maxlength="24" placeholder="Office Fern" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="fTicker">Ticker</label>
+            <input type="text" id="fTicker" maxlength="10" placeholder="FERN" autocomplete="off" autocapitalize="characters">
+          </div>
+        </div>
+        <div class="field">
+          <label for="fPitch">One line</label>
+          <input type="text" id="fPitch" maxlength="80" placeholder="Survived four layoffs and a merger. Still green." autocomplete="off">
+          <span class="count" id="pitchCount">0 / 80</span>
+        </div>
+        <div class="field">
+          <span class="k" style="color:var(--muted)">Image</span>
+          <div class="upload">
+            <div class="tile" id="imgPreview">IMG</div>
+            <label class="btn btn-line" for="fImage">Add image</label>
+            <input type="file" id="fImage" accept="image/png,image/jpeg,image/webp,image/gif">
+          </div>
+        </div>
+        <div class="form-foot">
+          <button class="btn btn-solid" type="submit" id="fSubmit">Sign &amp; table motion</button>
+          <span class="form-msg" id="formMsg" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="band" id="session">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">The session clock</p>
+        <h2>Every day runs on New York time</h2>
+        <p class="sec-sub" id="tzNote">Times shown in ET, with your local time beside them.</p>
+      </div>
+      <ol class="stops" id="stops">
+        <li class="stop" data-et="12:00">
+          <div class="stop-time"><b>12:00</b><small>ET · <span class="lt">–</span></small></div>
+          <h3>Session opens</h3>
+          <p>Yesterday's winner ships and the floor opens. Any holder above the line can table a motion.</p>
+        </li>
+        <li class="stop" data-et="08:00">
+          <div class="stop-time"><b>08:00</b><small>ET · <span class="lt">–</span></small></div>
+          <h3>Motions close</h3>
+          <p>The Order Paper locks. No new coins join, so the last four hours are a straight race.</p>
+        </li>
+        <li class="stop" data-et="11:59">
+          <div class="stop-time"><b>11:59</b><small>ET · <span class="lt">–</span></small></div>
+          <h3>Floor closes</h3>
+          <p>Every signed ballot is counted against a snapshot of $QUORUM balances, and turnout is checked against quorum.</p>
+        </li>
+        <li class="stop" data-et="12:00">
+          <div class="stop-time"><b>12:00</b><small>ET · <span class="lt">–</span></small></div>
+          <h3>It ships</h3>
+          <p>The winning motion launches on pump.fun from the public ship wallet. The next session opens the same second.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" id="rules">
+    <div class="wrap rules-grid">
+      <div>
+        <div class="sec-head">
+          <p class="eyebrow">Rules of the house</p>
+          <h2>Simple enough to fit on a ballot</h2>
+        </div>
+        <dl class="rules">
+          <div><dt class="k">Ballots</dt><dd>One wallet, one ballot per session. Signing is free and moves no funds.</dd></div>
+          <div><dt class="k">Weight</dt><dd>Your ballot counts the $QUORUM you hold at 11:59 ET.</dd></div>
+          <div><dt class="k">Quorum</dt><dd id="ruleQuorum">At least 5% of supply has to vote. No quorum, no coin.</dd></div>
+          <div><dt class="k">Ship wallet</dt><dd>Launches the winner and never buys it. No dev buy, no bundle, every launch public on-chain.</dd></div>
+          <div><dt class="k">Tabling</dt><dd id="ruleTable">Hold 100K $QUORUM to table a motion.</dd></div>
+        </dl>
+      </div>
+      <div class="fees">
+        <p class="k">Where the fees go</p>
+        <h3>Every coin we ship pays $QUORUM.</h3>
+        <p>Each winner earns creator fees on every trade. Most of it buys $QUORUM back. The rest goes to the wallet that tabled the winning motion, so good ideas get paid.</p>
+        <div class="split" id="split"></div>
+        <div class="split-legend" id="splitLegend"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="hansard">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">The Hansard</p>
+        <h2>Every session, on the record</h2>
+        <p class="status-line"><span>Turnout, the winning share and what each coin did after it shipped.</span><span class="chip" data-demo>Sample sessions</span></p>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Session</th><th>Coin</th><th class="num">Turnout</th><th class="num">Winning ayes</th><th class="num">Peak mcap</th></tr></thead>
+          <tbody id="hansardBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="QUORUM, back to top">
+        <svg viewBox="0 0 40 24" aria-hidden="true"><path d="M32.84 22.80A12.84 12.84 0 0 0 31.83 17.79L30.27 18.55A11.11 11.11 0 0 1 31.11 22.80ZM31.29 16.67A12.84 12.84 0 0 0 28.49 13.16L27.41 14.51A11.11 11.11 0 0 1 29.73 17.42ZM27.51 12.38A12.84 12.84 0 0 0 23.46 10.43L23.08 12.12A11.11 11.11 0 0 1 26.43 13.74ZM22.25 10.15A12.84 12.84 0 0 0 17.75 10.15L18.14 11.84A11.11 11.11 0 0 1 21.86 11.84ZM16.54 10.43A12.84 12.84 0 0 0 12.49 12.38L13.57 13.74A11.11 11.11 0 0 1 16.92 12.12ZM11.51 13.16A12.84 12.84 0 0 0 8.71 16.67L10.27 17.42A11.11 11.11 0 0 1 12.59 14.51ZM8.17 17.79A12.84 12.84 0 0 0 7.16 22.80L8.89 22.80A11.11 11.11 0 0 1 9.73 18.55ZM35.82 22.80A15.82 15.82 0 0 0 34.51 16.50L32.95 17.25A14.09 14.09 0 0 1 34.09 22.80ZM33.97 15.38A15.82 15.82 0 0 0 30.34 10.83L29.26 12.18A14.09 14.09 0 0 1 32.41 16.13ZM29.37 10.05A15.82 15.82 0 0 0 24.13 7.52L23.74 9.21A14.09 14.09 0 0 1 28.29 11.41ZM22.91 7.25A15.82 15.82 0 0 0 17.09 7.25L17.48 8.94A14.09 14.09 0 0 1 22.52 8.94ZM15.87 7.52A15.82 15.82 0 0 0 10.63 10.05L11.71 11.41A14.09 14.09 0 0 1 16.26 9.21ZM9.66 10.83A15.82 15.82 0 0 0 6.03 15.38L7.59 16.13A14.09 14.09 0 0 1 10.74 12.18ZM5.49 16.50A15.82 15.82 0 0 0 4.18 22.80L5.91 22.80A14.09 14.09 0 0 1 7.05 17.25ZM38.80 22.80A18.80 18.80 0 0 0 37.20 15.21L35.64 15.96A17.07 17.07 0 0 1 37.07 22.80ZM36.66 14.09A18.80 18.80 0 0 0 32.20 8.50L31.12 9.85A17.07 17.07 0 0 1 35.10 14.84ZM31.23 7.72A18.80 18.80 0 0 0 24.79 4.62L24.40 6.31A17.07 17.07 0 0 1 30.15 9.08ZM23.57 4.34A18.80 18.80 0 0 0 16.43 4.34L16.81 6.03A17.07 17.07 0 0 1 23.19 6.03ZM15.21 4.62A18.80 18.80 0 0 0 8.77 7.72L9.85 9.08A17.07 17.07 0 0 1 15.60 6.31ZM7.80 8.50A18.80 18.80 0 0 0 3.34 14.09L4.90 14.84A17.07 17.07 0 0 1 8.88 9.85ZM2.80 15.21A18.80 18.80 0 0 0 1.20 22.80L2.93 22.80A17.07 17.07 0 0 1 4.36 15.96Z" fill="var(--bench)"/><circle cx="20.00" cy="17.92" r="4.88" fill="var(--ink)"/></svg>
+        <span>QUORUM</span>
+      </a>
+      <p>One coin a day. Holders pick it. Votes choose a meme coin to launch; nothing here is financial advice.</p>
+      <div class="ca" id="caRow" hidden><span class="k" style="color:var(--muted)">CA</span><span id="caText"></span><button class="btn btn-line" type="button" id="caCopy" style="min-height:34px">Copy</button></div>
+    </div>
+    <div class="foot-links" id="footLinks"></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ---------- Edit here ---------- */
+const CONFIG = {
+  ticker: "QUORUM",
+  ca: "",                 // contract address: shown in the footer and used for links once set
+  mint: "",               // usually same as ca; used to read each wallet's $QUORUM for ballot weight
+  rpc: "https://api.mainnet-beta.solana.com",
+  x: "",                  // X profile URL
+  shipWallet: "",         // public wallet that launches each winner
+  shipHourET: 12,
+  motionsCloseHourET: 8,
+  quorumPct: 5,           // % of supply that must vote
+  supply: 1_000_000_000,
+  minToTable: 100_000,
+  feeBuybackPct: 70,
+  feeAuthorPct: 30,
+  firstShipDateET: "2026-11-03", // ET date Session 001 ships
+  demo: true,             // sample motions, sample Hansard and preview wallets
+  demoSession: 14
+};
+
+const SAMPLE_MOTIONS = [
+  {id:"m1", n:1, name:"Office Fern",   ticker:"FERN",    pitch:"Survived four layoffs and a merger. Still green.", author:"7xKq…f3Ra", weight:11_300_000},
+  {id:"m2", n:2, name:"Nothing",       ticker:"NOTHING", pitch:"A coin that does nothing. On purpose. Forever.",    author:"Bv2T…9qLm", weight:14_200_000},
+  {id:"m3", n:3, name:"Grandpa",       ticker:"GRANDPA", pitch:"Bought SOL at $8. Tells you about it every Sunday.", author:"4fTr…Wd71", weight:8_600_000},
+  {id:"m4", n:4, name:"Mothman",       ticker:"MOTH",    pitch:"Flies straight at every green candle.",            author:"9Hcz…Pp2e", weight:7_400_000},
+  {id:"m5", n:5, name:"Lobby Music",   ticker:"HOLD",    pitch:"Your call is important to us. Keep holding.",       author:"Ek8s…uN4b", weight:5_300_000}
+];
+const SAMPLE_HANSARD = [
+  {s:13, name:"Wet Floor",   ticker:"SLIP",  turnout:6.8, ayes:38.2, peak:"$1.9M"},
+  {s:12, name:"Night Shift", ticker:"SHIFT", turnout:5.6, ayes:31.0, peak:"$640K"},
+  {s:11, fail:true, turnout:4.3},
+  {s:10, name:"Lost Sock",   ticker:"SOCK",  turnout:7.4, ayes:44.9, peak:"$3.1M"},
+  {s:9,  name:"Dial-Up",     ticker:"DIAL",  turnout:5.2, ayes:27.5, peak:"$412K"},
+  {s:8,  name:"Mall Cop",    ticker:"MALL",  turnout:8.1, ayes:35.6, peak:"$1.2M"}
+];
+/* ------------------------------- */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const pad2 = n => String(n).padStart(2,"0");
+const pad3 = n => String(n).padStart(3,"0");
+const short = s => s.length > 10 ? `${s.slice(0,4)}…${s.slice(-4)}` : s;
+function fmt(n){
+  if (n >= 1e9) return (n/1e9).toFixed(2)+"B";
+  if (n >= 1e6) return (n/1e6).toFixed(1)+"M";
+  if (n >= 1e3) return Math.round(n/1e3)+"K";
+  return String(Math.round(n));
+}
+const B58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+function b58(bytes){
+  const digits = [0];
+  for (const byte of bytes){
+    let carry = byte;
+    for (let j = 0; j < digits.length; j++){ carry += digits[j] << 8; digits[j] = carry % 58; carry = (carry / 58) | 0; }
+    while (carry){ digits.push(carry % 58); carry = (carry / 58) | 0; }
+  }
+  let out = "";
+  for (const byte of bytes){ if (byte === 0) out += "1"; else break; }
+  for (let i = digits.length - 1; i >= 0; i--) out += B58[digits[i]];
+  return out;
+}
+function nonce(){ const b = new Uint8Array(6); crypto.getRandomValues(b); return [...b].map(x=>x.toString(16).padStart(2,"0")).join(""); }
+
+/* ---------- Time ---------- */
+const NYF = new Intl.DateTimeFormat("en-US",{timeZone:"America/New_York",hourCycle:"h23",year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit"});
+function nyNow(d = new Date()){
+  const p = Object.fromEntries(NYF.formatToParts(d).map(x=>[x.type,x.value]));
+  const h = (+p.hour) % 24;
+  return {y:+p.year, m:+p.month, d:+p.day, sec: h*3600 + (+p.minute)*60 + (+p.second)};
+}
+function secsUntilET(targetSec, now = new Date()){
+  const {sec} = nyNow(now);
+  let diff = targetSec - sec; if (diff <= 0) diff += 86400;
+  return diff;
+}
+const LOCAL_TIME = new Intl.DateTimeFormat([], {hour:"2-digit", minute:"2-digit"});
+const TZ = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").split("/").pop().replace(/_/g," ");
+function localAt(targetSec){ return LOCAL_TIME.format(new Date(Date.now() + secsUntilET(targetSec)*1000)); }
+function sessionNumber(){
+  if (CONFIG.demo) return CONFIG.demoSession;
+  const ny = nyNow(); const ship = CONFIG.shipHourET*3600;
+  const today = Date.UTC(ny.y, ny.m-1, ny.d) + (ny.sec >= ship ? 86400000 : 0);
+  const [fy,fm,fd] = CONFIG.firstShipDateET.split("-").map(Number);
+  return Math.max(1, Math.round((today - Date.UTC(fy,fm-1,fd))/86400000) + 1);
+}
+
+/* ---------- State ---------- */
+const state = {
+  session: sessionNumber(),
+  motions: CONFIG.demo ? SAMPLE_MOTIONS.map(m=>({...m})) : [],
+  wallet: null,
+  ballot: null,
+  highlight: null,
+  hadQuorum: false
+};
+const motionNo = m => `${pad3(state.session)}-${pad2(m.n)}`;
+const totalV = () => state.motions.reduce((a,m)=>a+m.weight,0);
+const turnoutPct = () => totalV() / CONFIG.supply * 100;
+const ranked = () => state.motions.slice().sort((a,b)=>b.weight-a.weight || a.n-b.n);
+
+const storeKey = () => `quorum:s${state.session}`;
+function save(){
+  try{
+    localStorage.setItem(storeKey(), JSON.stringify({
+      ballot: state.ballot,
+      mine: state.motions.filter(m=>m.mine).map(({img, ...m}) => ({...m, weight:0}))
+    }));
+  }catch(e){}
+}
+function load(){
+  try{
+    const d = JSON.parse(localStorage.getItem(storeKey()) || "null");
+    if (!d) return;
+    (d.mine || []).forEach(m => { if (!state.motions.some(x=>x.id===m.id)) state.motions.push(m); });
+    if (d.ballot){
+      const m = state.motions.find(x=>x.id===d.ballot.id);
+      if (m){ m.weight += d.ballot.weight; state.ballot = d.ballot; }
+    }
+  }catch(e){}
+}
+
+/* ---------- Wallet ---------- */
+function getProvider(){
+  try{
+    const p = (window.phantom && window.phantom.solana) || window.solflare || window.solana;
+    return p && typeof p.connect === "function" ? p : null;
+  }catch(e){ return null; }
+}
+function demoWeight(){ return Math.round((1.8 + Math.random()*4.4) * 1e6); }
+async function readWeight(owner, live){
+  if (CONFIG.mint && live){
+    try{
+      const r = await fetch(CONFIG.rpc, {method:"POST", headers:{"content-type":"application/json"},
+        body: JSON.stringify({jsonrpc:"2.0", id:1, method:"getTokenAccountsByOwner", params:[owner,{mint:CONFIG.mint},{encoding:"jsonParsed"}]})});
+      const j = await r.json();
+      return (j.result?.value || []).reduce((a,v)=>a + (v.account.data.parsed.info.tokenAmount.uiAmount || 0), 0);
+    }catch(e){ return CONFIG.demo ? demoWeight() : 0; }
+  }
+  return CONFIG.demo ? demoWeight() : 0;
+}
+async function ensureWallet(){
+  if (state.wallet) return state.wallet;
+  const prov = getProvider();
+  if (prov){
+    try{
+      const res = await prov.connect();
+      const pk = (res && res.publicKey) || prov.publicKey;
+      state.wallet = {pubkey: pk.toString(), live:true, prov};
+    }catch(e){ toast("Wallet connection was cancelled."); return null; }
+  } else {
+    if (!CONFIG.demo){ toast("No Solana wallet found. Install Phantom or Solflare and try again."); return null; }
+    const b = new Uint8Array(32); crypto.getRandomValues(b);
+    state.wallet = {pubkey: b58(b), live:false};
+    toast("No wallet in this browser, so you're using a preview wallet.");
+  }
+  state.wallet.weight = await readWeight(state.wallet.pubkey, state.wallet.live);
+  renderWallet();
+  return state.wallet;
+}
+async function sign(msg){
+  const bytes = new TextEncoder().encode(msg);
+  const w = state.wallet;
+  if (w.live){
+    const res = await w.prov.signMessage(bytes, "utf8");
+    const sig = res && res.signature ? res.signature : res;
+    return {sig: b58(new Uint8Array(sig)), preview:false};
+  }
+  const h = await crypto.subtle.digest("SHA-256", bytes);
+  return {sig: b58(new Uint8Array(h)), preview:true};
+}
+
+/* ---------- Actions ---------- */
+async function vote(id, btn){
+  const m = state.motions.find(x=>x.id===id);
+  if (!m || (state.ballot && state.ballot.id === id)) return;
+  if (btn) btn.disabled = true;
+  try{
+    const w = await ensureWallet(); if (!w) return;
+    if (!w.weight){ toast(`This wallet holds no $${CONFIG.ticker}, so its ballot would carry no weight.`); return; }
+    const msg = [
+      `QUORUM · Session ${pad3(state.session)}`,
+      `Aye: ${m.name} ($${m.ticker})`,
+      `Motion: ${motionNo(m)}`,
+      `Wallet: ${w.pubkey}`,
+      `Weight: $${CONFIG.ticker} held at the 11:59 ET snapshot`,
+      `Nonce: ${nonce()}`
+    ].join("\n");
+    let s;
+    try{ s = await sign(msg); }catch(e){ toast("Signature cancelled. Your ballot was not cast."); return; }
+    if (state.ballot){
+      const prev = state.motions.find(x=>x.id===state.ballot.id);
+      if (prev) prev.weight = Math.max(0, prev.weight - state.ballot.weight);
+    }
+    m.weight += w.weight;
+    state.ballot = {id, weight:w.weight, sig:s.sig, preview:s.preview, by:w.pubkey};
+    save(); renderAll();
+    const reached = turnoutPct() >= CONFIG.quorumPct;
+    if (reached && !state.hadQuorum) toast(`Quorum reached. Session ${pad3(state.session)} ships at 12:00 ET.`);
+    else toast(`Aye cast for $${m.ticker} with ${fmt(w.weight)} $${CONFIG.ticker}.`);
+    state.hadQuorum = reached;
+  } finally { if (btn) btn.disabled = false; }
+}
+
+/* ---------- Chamber ---------- */
+const chamber = {canvas:$("chamber"), N:240, R:8, r0:.53, seats:[], rowGap:0, progress:1};
+(function layout(){
+  const {N, R, r0} = chamber, r1 = 1;
+  const radii = Array.from({length:R}, (_,i)=> r0 + (r1-r0)*i/(R-1));
+  const sum = radii.reduce((a,b)=>a+b,0);
+  const counts = radii.map(r=>Math.round(N*r/sum));
+  counts[R-1] += N - counts.reduce((a,b)=>a+b,0);
+  const seats = [];
+  radii.forEach((r,i)=>{ const n = counts[i]; for (let j=0;j<n;j++) seats.push({r, row:i, t: n===1 ? Math.PI/2 : Math.PI - Math.PI*j/(n-1)}); });
+  seats.sort((a,b)=> (b.t - a.t) || (a.row - b.row));
+  chamber.seats = seats; chamber.rowGap = (r1-r0)/(R-1);
+})();
+function allocate(){
+  const full = 2 * CONFIG.quorumPct;                         // a full chamber = twice quorum, so the middle = quorum
+  const filled = Math.min(chamber.N, Math.round(chamber.N * Math.min(1, turnoutPct()/full)));
+  const list = ranked().filter(m=>m.weight>0);
+  const V = totalV();
+  if (!V || !filled) return [];
+  const rows = list.map(m=>({m, exact: filled*m.weight/V}));
+  rows.forEach(r=>r.n = Math.floor(r.exact));
+  let left = filled - rows.reduce((a,r)=>a+r.n,0);
+  rows.slice().sort((a,b)=>(b.exact-b.n)-(a.exact-a.n)).slice(0,left).forEach(r=>r.n++);
+  const out = [];
+  rows.forEach((r,rank)=>{ for (let i=0;i<r.n;i++) out.push({id:r.m.id, rank}); });
+  return out;
+}
+function cssVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function drawChamber(){
+  const c = chamber.canvas, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const W = c.clientWidth, H = c.clientHeight; if (!W || !H) return;
+  if (c.width !== Math.round(W*dpr) || c.height !== Math.round(H*dpr)){ c.width = Math.round(W*dpr); c.height = Math.round(H*dpr); }
+  const ctx = c.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
+  const padTop = 26, padSide = 6, padBottom = 4;
+  const Rpx = Math.min(W/2 - padSide, H - padTop - padBottom);
+  const cx = W/2, cy = H - padBottom;
+  const dot = chamber.rowGap * Rpx * 0.36;
+  const bench = cssVar("--bench"), ink = cssVar("--ink"), ice = cssVar("--steel"), empty = cssVar("--line-2"), muted = cssVar("--muted");
+  const alloc = allocate();
+  const shown = Math.floor(chamber.seats.length * chamber.progress);
+  const fades = [1,.85,.62,.46,.34,.26,.2,.16];
+  chamber.seats.forEach((s,i)=>{
+    const x = cx + Math.cos(s.t)*s.r*Rpx, y = cy - Math.sin(s.t)*s.r*Rpx;
+    const a = i < shown ? alloc[i] : null;
+    let fill = empty, alpha = 1;
+    if (a){ fill = a.rank === 0 ? bench : ice; alpha = a.rank === 0 ? 1 : fades[Math.min(a.rank, fades.length-1)]; }
+    if (state.highlight && a && a.id !== state.highlight) alpha *= .22;
+    if (state.highlight && a && a.id === state.highlight && a.rank !== 0){ alpha = .9; }
+    ctx.globalAlpha = alpha; ctx.fillStyle = fill;
+    ctx.beginPath(); ctx.arc(x, y, dot, 0, Math.PI*2); ctx.fill();
+  });
+  // quorum mark at the top of the arc
+  ctx.globalAlpha = 1;
+  const top = cy - Rpx;
+  ctx.strokeStyle = ink; ctx.lineWidth = 1.25;
+  ctx.beginPath(); ctx.moveTo(cx, top - 4); ctx.lineTo(cx, top - 12); ctx.stroke();
+  ctx.fillStyle = muted;
+  ctx.font = `500 10px ${cssVar("--f-mono") || "monospace"}`;
+  ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+  ctx.fillText(`QUORUM ${CONFIG.quorumPct}%`, cx, top - 15);
+}
+function sweep(){
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches){ chamber.progress = 1; drawChamber(); return; }
+  const t0 = performance.now(), dur = 1300;
+  chamber.progress = 0;
+  (function step(t){
+    const k = Math.min(1, (t - t0)/dur); chamber.progress = 1 - Math.pow(1-k, 3);
+    drawChamber(); if (k < 1) requestAnimationFrame(step);
+  })(t0);
+}
+
+/* ---------- Render ---------- */
+function renderWallet(){
+  const b = $("walletBtn"), w = state.wallet;
+  if (!w){ b.textContent = "Connect wallet"; return; }
+  b.textContent = `${w.live ? "" : "Preview · "}${short(w.pubkey)} · ${fmt(w.weight)}`;
+  b.title = `${w.pubkey}\n${fmt(w.weight)} $${CONFIG.ticker}`;
+}
+function renderHero(){
+  const t = turnoutPct(), q = CONFIG.quorumPct, lead = ranked()[0];
+  $("heroEyebrow").textContent = `Session ${pad3(state.session)} · Solana · pump.fun`;
+  $("floorEyebrow").textContent = `Order Paper · Session ${pad3(state.session)}`;
+  $("turnout").textContent = `${t.toFixed(2)}% of supply`;
+  const qs = $("quorumState");
+  if (t >= q){ qs.textContent = "Reached"; qs.className = "ok"; }
+  else { qs.textContent = `${fmt((q - t)/100*CONFIG.supply)} to go`; qs.className = ""; }
+  $("leading").textContent = lead && lead.weight ? `$${lead.ticker}` : "No ayes yet";
+}
+function renderMotions(){
+  const V = totalV(), list = ranked();
+  $("motions").innerHTML = list.map((m,i)=>{
+    const pct = V ? m.weight/V*100 : 0;
+    const lead = i === 0 && m.weight > 0;
+    const mine = !!state.ballot && state.ballot.id === m.id;
+    const label = mine ? "✓ Your aye" : (state.ballot ? "Move aye" : "Aye");
+    const tile = m.img ? `<img src="${m.img}" alt="">` : esc(m.ticker.slice(0,2));
+    return `<li class="motion${lead?" is-lead":""}" data-id="${m.id}">
+      <div class="tile" aria-hidden="true">${tile}</div>
+      <div class="info">
+        <p class="m-no">No. ${motionNo(m)}${lead?" · Leading":""}${m.mine?" · Your motion":""}</p>
+        <h3><span>${esc(m.name)}</span><span class="tick">$${esc(m.ticker)}</span></h3>
+        <p class="pitch">${esc(m.pitch)}</p>
+        <p class="by">Tabled by ${esc(m.author)}</p>
+      </div>
+      <div class="act">
+        <div class="tally"><div class="t-top"><b>${fmt(m.weight)}</b><span>${pct.toFixed(1)}%</span></div><div class="bar"><i style="width:${pct.toFixed(2)}%"></i></div></div>
+        <button class="btn-aye" type="button" data-vote="${m.id}" aria-pressed="${mine}" aria-label="${mine?"Your ballot":"Vote aye"} for ${esc(m.name)}">${label}</button>
+      </div>
+    </li>`;
+  }).join("") || `<li class="motion"><div class="tile">–</div><div class="info"><h3>No motions yet</h3><p class="pitch">The first motion of the session will appear here.</p></div></li>`;
+}
+function renderSlip(){
+  const b = state.ballot;
+  const ordered = state.motions.slice().sort((x,y)=>x.n-y.n);
+  const X = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4l12 12M16 4L4 16"/></svg>`;
+  $("slip").innerHTML = `
+    <p class="slip-head"><span>Ballot paper</span><span>Session ${pad3(state.session)}</span></p>
+    <p class="slip-inst">${b ? "Your ballot is cast." : "Mark one box only."}</p>
+    <ul class="slip-list">${ordered.map(m=>`<li><span class="box">${b && b.id===m.id ? X : ""}</span><span class="s-name">${esc(m.name)}</span><span class="s-tick">$${esc(m.ticker)}</span></li>`).join("")}</ul>
+    ${b ? `<div class="slip-sig">
+        <div><span class="k">Signed by</span><span class="sig">${esc(short(b.by))}</span></div>
+        <div><span class="k">Weight</span><span class="sig">${fmt(b.weight)} $${CONFIG.ticker}</span></div>
+        <div><span class="k">Signature</span><span class="sig">${esc(b.sig.slice(0,10))}…${esc(b.sig.slice(-8))}</span></div>
+        ${b.preview ? `<p class="slip-note">Preview ballot. On the live site Phantom or Solflare signs it.</p>` : ""}
+      </div>` : `<p class="slip-note">Press Aye on a motion. Your wallet signs a free message, so no funds move.</p>`}`;
+}
+function renderHansard(){
+  const rows = CONFIG.demo ? SAMPLE_HANSARD : [];
+  $("hansardBody").innerHTML = rows.length ? rows.map(r => r.fail
+    ? `<tr class="fail"><td class="num">${pad3(r.s)}</td><td class="h-coin"><b>No quorum</b><span>nothing shipped</span></td><td class="num">${r.turnout.toFixed(1)}%</td><td class="num">–</td><td class="num">–</td></tr>`
+    : `<tr><td class="num">${pad3(r.s)}</td><td class="h-coin"><b>${esc(r.name)}</b><span>$${esc(r.ticker)}</span></td><td class="num">${r.turnout.toFixed(1)}%</td><td class="num">${r.ayes.toFixed(1)}%</td><td class="num">${esc(r.peak)}</td></tr>`
+  ).join("") : `<tr><td colspan="5">Session 001 is the first entry. It lands here the moment it ships.</td></tr>`;
+}
+function renderStatic(){
+  const q = CONFIG.quorumPct;
+  $("fineQuorum").textContent = `If less than ${q}% of supply votes, nothing ships that day.`;
+  $("ruleQuorum").textContent = `At least ${q}% of supply has to vote. No quorum, no coin.`;
+  $("ruleTable").textContent = `Hold ${fmt(CONFIG.minToTable)} $${CONFIG.ticker} to table a motion.`;
+  $("reqHold").textContent = `${fmt(CONFIG.minToTable)} $${CONFIG.ticker} in the wallet that signs`;
+  $("split").innerHTML = `<div class="s1" style="flex:${CONFIG.feeBuybackPct}">${CONFIG.feeBuybackPct}%</div><div class="s2" style="flex:${CONFIG.feeAuthorPct}">${CONFIG.feeAuthorPct}%</div>`;
+  $("splitLegend").innerHTML = `<div><i style="background:var(--bench)"></i><span>${CONFIG.feeBuybackPct}% buys back $${CONFIG.ticker}</span></div><div><i style="background:var(--steel)"></i><span>${CONFIG.feeAuthorPct}% to the wallet that tabled the winner</span></div>`;
+  document.querySelectorAll("[data-demo]").forEach(el => el.hidden = !CONFIG.demo);
+  const links = [];
+  if (CONFIG.x) links.push(`<a class="btn btn-line" href="${esc(CONFIG.x)}" target="_blank" rel="noopener">X</a>`);
+  if (CONFIG.ca) links.push(`<a class="btn btn-line" href="https://pump.fun/coin/${esc(CONFIG.ca)}" target="_blank" rel="noopener">pump.fun</a>`);
+  if (CONFIG.shipWallet) links.push(`<a class="btn btn-line" href="https://solscan.io/account/${esc(CONFIG.shipWallet)}" target="_blank" rel="noopener">Ship wallet</a>`);
+  $("footLinks").innerHTML = links.join("");
+  if (CONFIG.ca){ $("caRow").hidden = false; $("caText").textContent = CONFIG.ca; }
+  $("tzNote").textContent = TZ ? `Times in ET, with your time in ${TZ} beside them.` : "Times in ET, with your local time beside them.";
+}
+function renderAll(){ renderHero(); renderMotions(); renderSlip(); drawChamber(); }
+
+/* ---------- Clock ---------- */
+function tick(){
+  const ship = CONFIG.shipHourET*3600, close = CONFIG.motionsCloseHourET*3600;
+  const toShip = secsUntilET(ship);
+  const h = Math.floor(toShip/3600), m = Math.floor(toShip%3600/60), s = toShip%60;
+  $("clock").textContent = `${pad2(h)}:${pad2(m)}:${pad2(s)}`;
+  $("clockSub").textContent = `${localAt(ship)} your time`;
+  $("pillText").textContent = toShip <= 60 ? "Shipping" : "Floor open";
+  const {sec} = nyNow();
+  const open = sec >= ship || sec < close;
+  if (open){
+    const t = secsUntilET(close);
+    $("closeLine").textContent = `Motions close in ${Math.floor(t/3600)}h ${pad2(Math.floor(t%3600/60))}m · Floor closes 11:59 ET`;
+  } else {
+    $("closeLine").textContent = `Motions closed at ${pad2(CONFIG.motionsCloseHourET)}:00 ET · Floor closes 11:59 ET`;
+  }
+  state.motionsOpen = open;
+}
+function renderStops(){
+  document.querySelectorAll(".stop").forEach(li=>{
+    const [hh,mm] = li.dataset.et.split(":").map(Number);
+    li.querySelector(".lt").textContent = `${localAt(hh*3600+mm*60)} your time`;
+  });
+}
+
+/* ---------- Form ---------- */
+let pendingImg = null;
+$("fTicker").addEventListener("input", e => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,""); });
+$("fPitch").addEventListener("input", e => { $("pitchCount").textContent = `${e.target.value.length} / 80`; });
+$("fImage").addEventListener("change", e => {
+  const f = e.target.files && e.target.files[0]; if (!f) return;
+  if (f.size > 2_000_000){ formMsg("Images up to 2 MB, please.", "err"); e.target.value = ""; return; }
+  const r = new FileReader();
+  r.onload = () => { pendingImg = r.result; $("imgPreview").innerHTML = `<img src="${pendingImg}" alt="">`; };
+  r.readAsDataURL(f);
+});
+function formMsg(t, kind){ const el = $("formMsg"); el.textContent = t; el.className = "form-msg" + (kind ? " " + kind : ""); }
+$("motionForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const name = $("fName").value.trim(), ticker = $("fTicker").value.trim(), pitch = $("fPitch").value.trim();
+  if (!name){ formMsg("Give the coin a name.", "err"); $("fName").focus(); return; }
+  if (ticker.length < 2){ formMsg("Tickers need at least 2 letters.", "err"); $("fTicker").focus(); return; }
+  if (!pitch){ formMsg("Add the one line that sells it.", "err"); $("fPitch").focus(); return; }
+  if (state.motions.some(m => m.ticker === ticker)){ formMsg(`$${ticker} is already on the Order Paper.`, "err"); return; }
+  if (!state.motionsOpen && !CONFIG.demo){ formMsg(`Motions closed at ${pad2(CONFIG.motionsCloseHourET)}:00 ET. Table yours when the next session opens at noon.`, "err"); return; }
+  const btn = $("fSubmit"); btn.disabled = true;
+  try{
+    const w = await ensureWallet(); if (!w) return;
+    if (state.motions.some(m => m.mine && m.authorKey === w.pubkey)){ formMsg("This wallet already tabled a motion this session.", "err"); return; }
+    if (w.weight < CONFIG.minToTable){ formMsg(`Hold at least ${fmt(CONFIG.minToTable)} $${CONFIG.ticker} to table a motion. This wallet holds ${fmt(w.weight)}.`, "err"); return; }
+    const n = Math.max(0, ...state.motions.map(m=>m.n)) + 1;
+    const msg = [`QUORUM · Session ${pad3(state.session)}`, `Table motion ${pad3(state.session)}-${pad2(n)}: ${name} ($${ticker})`, pitch, `Wallet: ${w.pubkey}`, `Nonce: ${nonce()}`].join("\n");
+    try{ await sign(msg); }catch(err){ formMsg("Signature cancelled. The motion was not tabled.", "err"); return; }
+    state.motions.push({id:`u${Date.now()}`, n, name, ticker, pitch, author: short(w.pubkey), authorKey: w.pubkey, weight:0, img: pendingImg, mine:true});
+    save(); renderAll();
+    formMsg(`Motion ${pad3(state.session)}-${pad2(n)} is on the Order Paper.`, "good");
+    if (!state.motionsOpen && CONFIG.demo) toast("Preview: on the live site motions close at 08:00 ET.");
+    e.target.reset(); pendingImg = null; $("imgPreview").textContent = "IMG"; $("pitchCount").textContent = "0 / 80";
+  } finally { btn.disabled = false; }
+});
+
+/* ---------- Events ---------- */
+let toastTimer;
+function toast(t){ const el = $("toast"); el.textContent = t; el.classList.add("show"); clearTimeout(toastTimer); toastTimer = setTimeout(()=>el.classList.remove("show"), 3200); }
+$("walletBtn").addEventListener("click", async () => {
+  if (state.wallet){ toast(`${short(state.wallet.pubkey)} holds ${fmt(state.wallet.weight)} $${CONFIG.ticker}.`); return; }
+  await ensureWallet();
+});
+$("motions").addEventListener("click", e => { const b = e.target.closest("[data-vote]"); if (b) vote(b.dataset.vote, b); });
+function setHighlight(id){
+  if (state.highlight === id) return;
+  state.highlight = id;
+  const list = $("motions");
+  list.classList.toggle("dim", !!id);
+  list.querySelectorAll(".motion").forEach(li => li.classList.toggle("hl", li.dataset.id === id));
+  drawChamber();
+}
+$("motions").addEventListener("pointerover", e => { const li = e.target.closest(".motion[data-id]"); if (li && e.pointerType === "mouse") setHighlight(li.dataset.id); });
+$("motions").addEventListener("pointerleave", () => setHighlight(null));
+$("motions").addEventListener("focusin", e => { const li = e.target.closest(".motion[data-id]"); if (li) setHighlight(li.dataset.id); });
+$("motions").addEventListener("focusout", e => { if (!$("motions").contains(e.relatedTarget)) setHighlight(null); });
+$("caCopy").addEventListener("click", async () => {
+  try{ await navigator.clipboard.writeText(CONFIG.ca); toast("Contract address copied."); }
+  catch(e){ const r = document.createRange(); r.selectNodeContents($("caText")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast("Selected. Copy it from here."); }
+});
+new ResizeObserver(() => drawChamber()).observe(chamber.canvas);
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawChamber);
+new MutationObserver(drawChamber).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawChamber);
+
+/* ---------- Boot ---------- */
+load();
+state.hadQuorum = turnoutPct() >= CONFIG.quorumPct;
+renderStatic(); renderHansard(); renderStops(); tick();
+renderHero(); renderMotions(); renderSlip();
+sweep();
+setInterval(tick, 1000);
+setInterval(renderStops, 60000);
+</script>
